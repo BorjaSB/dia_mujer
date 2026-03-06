@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Una Sorpresa Para Ti ❤️</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    overflow:hidden;
+    color:white;
+}
+
+/* Animación aparición */
+.container{
+    animation:fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+img{
+    width:230px;
+    margin-top:20px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.4);
+    transition:transform .4s ease;
+}
+
+img:hover{
+    transform:scale(1.05);
+}
+
+h1{
+    font-size:22px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>💌 Escanea y descubre lo que mi corazón siente por ti 💌</h1>
+    <img src="qr.png" alt="Código QR">
+</div>
+
+</body>
+</html>
+l
