@@ -8,14 +8,13 @@
 <style>
 body{
     margin:0;
-    padding:20px;
     font-family:'Segoe UI',sans-serif;
-    background:linear-gradient(135deg,#f3e8ff,#e9d5ff);
-    text-align:center;
+    background:linear-gradient(180deg,#f5edff,#e9d5ff);
     color:#6b21a8;
-    overflow:hidden;
+    overflow-x:hidden;
 }
 
+/* Canvas partículas */
 #particles{
     position:fixed;
     top:0;
@@ -25,36 +24,91 @@ body{
     z-index:0;
 }
 
-.content{
+/* Contenido */
+.container{
     position:relative;
     z-index:1;
+    padding:30px 20px 80px 20px;
+    text-align:center;
 }
 
 h1{
-    margin-bottom:20px;
+    margin-bottom:30px;
+    font-size:26px;
 }
 
+/* Galería */
 .gallery{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:20px;
+    display:flex;
+    flex-direction:column;
+    gap:35px;
 }
 
+/* Base marco */
 .frame{
     background:white;
-    padding:10px;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    padding:12px;
+    border-radius:25px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.15);
+    position:relative;
+    transition:transform .4s ease;
 }
 
+.frame:hover{
+    transform:scale(1.03);
+}
+
+/* Imagen */
 .frame img{
     width:100%;
-    border-radius:15px;
+    border-radius:18px;
+    display:block;
 }
 
-@media(min-width:600px){
+/* ❤️ Bordes personalizados */
+
+/* 1 - Borde doble romántico */
+.frame1{
+    border:4px double #c084fc;
+}
+
+/* 2 - Borde degradado */
+.frame2{
+    border:4px solid;
+    border-image:linear-gradient(45deg,#f472b6,#c084fc) 1;
+}
+
+/* 3 - Borde punteado delicado */
+.frame3{
+    border:4px dotted #a855f7;
+}
+
+/* 4 - Borde sólido con sombra rosa */
+.frame4{
+    border:4px solid #ec4899;
+    box-shadow:0 0 25px rgba(236,72,153,0.4);
+}
+
+/* Corazones decorativos */
+.frame::after{
+    content:"❤";
+    position:absolute;
+    top:-12px;
+    right:-12px;
+    background:#fff;
+    color:#ec4899;
+    font-size:18px;
+    padding:6px 8px;
+    border-radius:50%;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Responsive */
+@media(min-width:700px){
     .gallery{
+        display:grid;
         grid-template-columns:1fr 1fr;
+        gap:30px;
     }
 }
 </style>
@@ -64,7 +118,8 @@ h1{
 
 <canvas id="particles"></canvas>
 
-<div class="content">
+<div class="container">
+
     <h1>💜 Nuestra Historia 💜</h1>
 
     <!-- Música -->
@@ -73,19 +128,36 @@ h1{
     </audio>
 
     <div class="gallery">
-        <div class="frame"><img src="foto1.jpg"></div>
-        <div class="frame"><img src="foto2.jpg"></div>
-        <div class="frame"><img src="foto3.jpg"></div>
-        <div class="frame"><img src="foto4.jpg"></div>
+        <div class="frame frame1">
+            <img src="foto1.jpg" alt="Recuerdo 1">
+        </div>
+
+        <div class="frame frame2">
+            <img src="foto2.jpg" alt="Recuerdo 2">
+        </div>
+
+        <div class="frame frame3">
+            <img src="foto3.jpg" alt="Recuerdo 3">
+        </div>
+
+        <div class="frame frame4">
+            <img src="foto4.jpg" alt="Recuerdo 4">
+        </div>
     </div>
+
 </div>
 
 <script>
-// Reutilizamos partículas
+// Ajustar canvas dinámicamente
 const canvas = document.getElementById("particles");
 const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+
+function resizeCanvas(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
 
 let particlesArray = [];
 
@@ -94,7 +166,7 @@ class Particle{
         this.x = Math.random()*canvas.width;
         this.y = Math.random()*canvas.height;
         this.size = Math.random()*2 + 1;
-        this.speedY = Math.random()*0.5 + 0.2;
+        this.speedY = Math.random()*0.4 + 0.2;
         this.opacity = Math.random();
     }
     update(){
@@ -113,7 +185,8 @@ class Particle{
 }
 
 function init(){
-    for(let i=0;i<100;i++){
+    particlesArray = [];
+    for(let i=0;i<80;i++){
         particlesArray.push(new Particle());
     }
 }
