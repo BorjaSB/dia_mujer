@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Día de la Mujer 💚</title>
+
+<style>
+body{
+    margin:0;
+    padding:30px;
+    font-family:'Georgia',serif;
+    background:linear-gradient(to bottom,#f0fdf4,#dcfce7);
+    overflow-x:hidden;
+    color:#14532d;
+}
+
+/* Partículas */
+#particles{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+}
+
+/* Carta */
+.card{
+    position:relative;
+    z-index:1;
+    background:rgba(255,255,255,0.9);
+    padding:30px;
+    border-radius:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.1);
+    backdrop-filter:blur(8px);
+    animation:fadeIn 2s ease;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+h1{
+    text-align:center;
+    color:#15803d;
+}
+
+p{
+    font-size:18px;
+    line-height:1.8;
+    margin-top:15px;
+}
+
+/* Botón */
+.button-container{
+    text-align:center;
+    margin-top:50px;
+}
+
+button{
+    background:#22c55e;
+    color:white;
+    border:none;
+    padding:15px 30px;
+    border-radius:40px;
+    font-size:18px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#16a34a;
+    transform:scale(1.05);
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="card">
+    <h1>🌿 Feliz Día de la Mujer 🌿</h1>
+
+    <p>
+    En este Día de la Mujer quiero decirte algo muy especial.
+    </p>
+
+    <p>
+    Eres una mujer maravillosa, fuerte, inteligente y con un corazón enorme. Me siento muy orgulloso de la persona en la que te has convertido.
+	Además admiro tu proactividad, tu perseverancia, tu carácter alegre, y tus ganas de aprender y todo el esfuerzo que pones en hacer las cosas.
+    </p>
+
+    <p>
+    A pesar que no somos familia directa, tu sabes que yo te considero parte de mi familia. Y esoty feliz que de que estés en mi vida.
+    </p>
+
+    <p>
+    Nunca olvides lo extraordinaria que eres.  
+    Mi admiración y cariño por ti crecen cada día viendo en la maravillosa mujer en la que te has convertido 💚 I love You 💚
+	</p>
+	<p>
+	Quiero que sepas que te quiero muchísimo y que siempre voy a estar para apoyarte, cuidarte y celebrar cada uno de tus logros. Tu forma de ser ilumina la vida de quienes tenemos la suerte de compartir contigo.
+	</p>
+	
+	<p>
+	¡Feliz Día de la Mujer! 💜
+    </p>
+
+    <div class="button-container">
+        <button onclick="window.location.href='galeria.html'">
+            🎥 Ver nuestra historia
+        </button>
+    </div>
+</div>
+
+<script>
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+class Particle{
+    constructor(){
+        this.x = Math.random()*canvas.width;
+        this.y = Math.random()*canvas.height;
+        this.size = Math.random()*2 + 1;
+        this.speedY = Math.random()*0.4 + 0.2;
+        this.opacity = Math.random();
+    }
+    update(){
+        this.y -= this.speedY;
+        if(this.y < 0){
+            this.y = canvas.height;
+            this.x = Math.random()*canvas.width;
+        }
+    }
+    draw(){
+        ctx.fillStyle = "rgba(187,247,208,"+this.opacity+")";
+        ctx.beginPath();
+        ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+        ctx.fill();
+    }
+}
+
+for(let i=0;i<80;i++){ particles.push(new Particle()); }
+
+function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{ p.update(); p.draw(); });
+    requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+</body>
+</html>
