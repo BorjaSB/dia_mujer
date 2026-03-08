@@ -13,9 +13,10 @@ body{
     background:linear-gradient(to bottom,#f0fdf4,#dcfce7);
     overflow-x:hidden;
     color:#14532d;
+    position:relative;
 }
 
-/* Partículas */
+/* Canvas partículas */
 #particles{
     position:fixed;
     top:0;
@@ -31,9 +32,9 @@ body{
     z-index:1;
     background:rgba(255,255,255,0.9);
     padding:30px;
-    border-radius:25px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.1);
-    backdrop-filter:blur(8px);
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.15);
+    backdrop-filter: blur(8px);
     animation:fadeIn 2s ease;
 }
 
@@ -74,11 +75,12 @@ button:hover{
     background:#16a34a;
     transform:scale(1.05);
 }
+
 /* Corazones */
 .heart{
     position:fixed;
     bottom:-20px;
-    color:#22c55e;
+    color:#c084fc;
     font-size:20px;
     animation:float 6s linear infinite;
     z-index:1;
@@ -124,27 +126,28 @@ button:hover{
     </p>
 
     <div class="button-container">
-        <button onclick="window.location.href='galeria.html'">
+        <button onclick="window.location.href='galeria_flo.html'">
             🎥 Ver nuestra historia
         </button>
     </div>
 </div>
 
 <script>
+// ✨ PARTÍCULAS BRILLANTES
 const canvas = document.getElementById("particles");
 const ctx = canvas.getContext("2d");
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let particles = [];
+let particlesArray = [];
 
 class Particle{
     constructor(){
         this.x = Math.random()*canvas.width;
         this.y = Math.random()*canvas.height;
         this.size = Math.random()*2 + 1;
-        this.speedY = Math.random()*0.4 + 0.2;
+        this.speedY = Math.random()*0.5 + 0.2;
         this.opacity = Math.random();
     }
     update(){
@@ -161,9 +164,6 @@ class Particle{
         ctx.fill();
     }
 }
-
-for(let i=0;i<80;i++){ particles.push(new Particle()); }
-
 
 function init(){
     for(let i=0;i<100;i++){
@@ -182,21 +182,19 @@ function animate(){
 
 init();
 animate();
+
 // 💜 Corazones flotando
 setInterval(()=>{
     const heart = document.createElement("div");
     heart.classList.add("heart");
-    heart.innerHTML="💚";
+    heart.innerHTML="❤";
     heart.style.left=Math.random()*100+"vw";
     heart.style.fontSize=(Math.random()*20+15)+"px";
     heart.style.animationDuration=(Math.random()*3+3)+"s";
     document.body.appendChild(heart);
     setTimeout(()=>heart.remove(),6000);
-},800);	
+},800);
 </script>
 
 </body>
 </html>
-
-
-
